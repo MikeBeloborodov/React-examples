@@ -5,14 +5,13 @@ export default function Form(){
         "firstName": "",
         "lastName": "",
         "email": "",
+        "password": "",
         "about": "",
         "signForNews": false,
         "employment": "",
-        "favColor": ""
+        "favColor": "none"
     })
 
-    console.log(formData)
-    
     function formEventHandler(event){
         const {name, type, checked, value} = event.target
 
@@ -23,9 +22,23 @@ export default function Form(){
             }
         })
     }
+
+    function handleSubmitForm(event){
+        event.preventDefault()
+        if (formData.firstName === "" ||
+        formData.lastName === "" ||
+        formData.email === "" ||
+        formData.password === ""){
+            alert("Please enter your first name, last name, email and password.")
+            
+        }else{
+            alert("Thank you!")
+            console.log(formData) // send data to api
+        }
+    }
     
     return(
-        <form>
+        <form onSubmit={handleSubmitForm}>
             <input
                 type="text"
                 name="firstName"
@@ -46,6 +59,13 @@ export default function Form(){
                 placeholder="Email"
                 onChange={formEventHandler}
                 value={formData.email}
+            />
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={formEventHandler}
+                value={formData.password}
             />
             <textarea
                 type="textarea"
@@ -99,18 +119,24 @@ export default function Form(){
                 <br />
             </fieldset>
             <br />
+            <label htmlFor="favColor">  Favorite Color</label>
+            <br />
             <select
                     id="favColor"
                     value={formData.favColor}
                     onChange={formEventHandler}
                     name="favColor"
                 >
+                <option value="none">----</option>
                 <option value="red">Red</option>
                 <option value="green">Green</option>
                 <option value="blue">Blue</option>
                 <option value="black">Black</option>
                 <option value="white">White</option>
             </select>
+            <br />
+            <br />
+            <button>Submit</button>
         </form>
     )
 }
