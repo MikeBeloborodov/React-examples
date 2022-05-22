@@ -7,7 +7,8 @@ export default function Form(){
         "email": "",
         "about": "",
         "signForNews": false,
-        "employment": ""
+        "employment": "",
+        "favColor": ""
     })
 
     console.log(formData)
@@ -97,6 +98,19 @@ export default function Form(){
                 <label htmlFor="unemployed">Unemployed</label>
                 <br />
             </fieldset>
+            <br />
+            <select
+                    id="favColor"
+                    value={formData.favColor}
+                    onChange={formEventHandler}
+                    name="favColor"
+                >
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+            </select>
         </form>
     )
 }
